@@ -48,9 +48,7 @@ public class UserService {
     }
 
     public Optional<User> getUserByEmail(String email) throws ResourceNotFoundException {
-        Optional<User> user = Optional.ofNullable(usersRepository
-                .findByEmailAddress(email));
-        return user;
+        return usersRepository.findByEmailAddress(email);
     }
 
 }
