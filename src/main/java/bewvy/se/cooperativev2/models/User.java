@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,5 +38,12 @@ public class User {
     private boolean host;
     @Column(name="type", nullable=false)
     private String type;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "users_tokens",
+//            joinColumns = {@JoinColumn(name = "users_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "token_id")}
+//    )
+    private String tokens;
 
 }
