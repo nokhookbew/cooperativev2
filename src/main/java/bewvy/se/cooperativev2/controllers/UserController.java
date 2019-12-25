@@ -1,6 +1,7 @@
 package bewvy.se.cooperativev2.controllers;
 
 import bewvy.se.cooperativev2.models.User;
+import bewvy.se.cooperativev2.services.AuthService;
 import bewvy.se.cooperativev2.services.UserService;
 import bewvy.se.cooperativev2.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    AuthService authService;
 
     @GetMapping
     public List<User> showData() {
@@ -77,12 +81,19 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
 
-        String hash  = dbUser.get().getPassword();
+        String hash = dbUser.get().getPassword();
 
         if (!BCrypt.checkpw(user.getPassword(), hash)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Wrong Password!");
         }
 
-        return ResponseEntity.ok("Welcome " + dbUser.get().getEmail());
+        String token = authService.generateToken(user);
+
+        Optional<User> optionalUser = userService.getUserByEmail(user.getEmail());
+        optionalUser.get().setTokens(token);
+
+        userService.updateUser(optionalUser.get().getId(), optionalUser.get());
+
+        return ResponseEntity.ok("Welcome " + dbUser.get().getEmail() + "token :" + token);
     }
 }
