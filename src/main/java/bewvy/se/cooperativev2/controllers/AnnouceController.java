@@ -29,9 +29,9 @@ public class AnnouceController {
         return annoucementService.getAllAnn();
     }
 
-    @GetMapping("/shop")
-    public List<Annoucement> showDataByShopName(@RequestBody Annoucement annoucement) {
-        return annoucementService.getAnnByShop(annoucement.getShopName());
+    @GetMapping("/shop/{shopname}")
+    public List<Annoucement> showDataByShopName(@PathVariable String shopname) {
+        return annoucementService.getAnnByShop(shopname);
     }
 
     @DeleteMapping("/{id}")

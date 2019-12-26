@@ -28,9 +28,9 @@ public class ItemController {
         return itemService.getById(id);
     }
 
-    @GetMapping("/shop")
-    public List<Item> showDataByShopName(@RequestBody  Item item) {
-        return itemService.getItemByShop(item.getShopName());
+    @GetMapping("/shop/{shopname}")
+    public List<Item> showDataByShopName(@PathVariable String shopname) {
+        return itemService.getItemByShop(shopname);
     }
 
     @PostMapping("/create")
