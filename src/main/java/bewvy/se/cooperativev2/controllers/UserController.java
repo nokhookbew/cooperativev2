@@ -48,12 +48,11 @@ public class UserController {
     }
 
 
-    @PostMapping
-    public User addUser(@RequestBody User user) {
+    @PostMapping("/register")
+    public ResponseEntity<User> addUser(@RequestBody User user) {
         user.setPassword(hashPassword(user.getPassword()));
         userService.addUser(user);
-        System.out.println(user.getPassword());
-        return user;
+        return ResponseEntity.ok().body(user);
     }
 
     @DeleteMapping("/{id}")

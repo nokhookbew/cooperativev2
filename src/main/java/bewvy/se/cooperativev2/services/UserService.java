@@ -47,8 +47,12 @@ public class UserService {
         return Optional.of(usersRepository.save(userDetails));
     }
 
-    public Optional<User> getUserByEmail(String email) throws ResourceNotFoundException {
+    public Optional<User> getUserByEmail(String email) {
         return usersRepository.findByEmailAddress(email);
+    }
+
+    public Optional<User> getUserByToken(String token) {
+        return usersRepository.findUserByToken(token);
     }
 
 }
