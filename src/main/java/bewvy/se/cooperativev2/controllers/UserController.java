@@ -93,6 +93,6 @@ public class UserController {
 
         userService.updateUser(optionalUser.get().getId(), optionalUser.get());
 
-        return ResponseEntity.ok("Welcome " + dbUser.get().getEmail() + "token :" + token);
+        return ResponseEntity.ok("Welcome " + dbUser.get().getEmail() + "\ntoken :" + token);
     }
 }

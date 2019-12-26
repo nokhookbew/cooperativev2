@@ -15,7 +15,7 @@ public class AuthService {
     TokenRepository tokenRepository;
 
     public String generateToken(User user) {
-        String token = TokenUtil.getInstance().getRandomToken();
+        String token = TokenUtil.getInstance().getRandomToken() + user.getEmail();
         Token t = new Token();
         t.setToken(token);
         t.setUsers(Collections.singleton(user));
