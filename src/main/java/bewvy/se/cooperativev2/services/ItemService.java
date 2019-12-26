@@ -2,7 +2,6 @@ package bewvy.se.cooperativev2.services;
 
 import bewvy.se.cooperativev2.exceptions.ResourceNotFoundException;
 import bewvy.se.cooperativev2.models.Item;
-import bewvy.se.cooperativev2.models.Shop;
 import bewvy.se.cooperativev2.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
